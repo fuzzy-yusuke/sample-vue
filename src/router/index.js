@@ -2,8 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter) //引数として、プラグインを渡して機能を拡張出来る
 
+//routerの設定
 const routes = [
   {
     path: '/',
@@ -20,6 +21,7 @@ const routes = [
   }
 ]
 
+//パスの設定
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

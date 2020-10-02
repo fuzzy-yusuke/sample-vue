@@ -6,7 +6,7 @@ import store from './store'
 Vue.config.productionTip = false
 
 new Vue({
-  router,
+  router,  //router変数を渡している
   store,
-  render: h => h(App)
+  render: h => h(App) //h関数：createElement関数の別名
 }).$mount('#app')
