@@ -2,9 +2,11 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="{ name:'about' }">About</router-link>
+      <!--指定したリンクを「router-link」で設定する-->
     </div>
-    <router-view/>
+    <router-view/> 
+    <!--ここに記述したルートに合わせて、コンポーネントが呼び出される-->
   </div>
 </template>
 
