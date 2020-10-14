@@ -13,6 +13,9 @@
 
       
     </v-app-bar>
+    <v-content>
+      <SideNav/>
+    </v-content>
 
     <v-main>
 
@@ -21,11 +24,12 @@
 </template>
 
 <script>
-
-
+import SideNav from './components/SideNav' //SideNav.vueをインポートし、ローカル登録を行う
 export default {
   name: 'App',
-
+  components: {
+    SideNav
+  },
 
 
   data: () => ({
