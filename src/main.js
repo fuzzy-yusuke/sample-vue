@@ -2,11 +2,17 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,  //routerオプションにrouter変数を渡している
+  //routerオプションにrouter変数を渡している
+  router,
+
   store,
-  render: h => h(App) //h関数：createElement関数の別名
+  vuetify,
+
+  //h関数：createElement関数の別名
+  render: h => h(App)
 }).$mount('#app')
