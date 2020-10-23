@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Addresses from '../views/Addresses.vue'
 
 Vue.use(VueRouter) //引数としてプラグインを渡して、機能を拡張出来る
 
@@ -10,6 +11,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/addresses',
+    name: 'addresses',
+    component: Addresses
   },
   {
     path: '/about',
