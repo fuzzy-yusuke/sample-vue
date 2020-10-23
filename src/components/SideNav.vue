@@ -14,7 +14,8 @@
 
         <v-divider></v-divider>
 
-        <v-list-item v-for="(item, index) in items" :key="index">
+        <v-list-item v-for="(item, index) in items" :key="index" :to="item.link">
+          <!--↑ルーターの機能も拡張されている為、「to」を加えることでリンクが設定できる-->
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -32,7 +33,8 @@ export default {
   data () {
     return {
       items: [
-        { title: '連絡先一覧', icon: 'mdi-menu' } //メニュータイトルと中身をコントロール
+        { title: 'ホーム', icon:'mdi-home',link:{ name: 'home'}},
+        { title: '連絡先一覧', icon: 'mdi-menu',link:{name:'addresses'} } //メニュータイトルと中身をコントロール
       ]
     }
   }
