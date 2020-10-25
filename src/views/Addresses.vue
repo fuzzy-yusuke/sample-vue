@@ -5,6 +5,14 @@
         <h1>連絡先一覧</h1>
       </v-flex>
 
+      <v-flex xs12 mt-5 mr-5 text-right>
+        <router-link :to="{name:'address_edit'}">
+          <v-btn color="info">
+            連絡先追加
+          </v-btn>
+        </router-link>
+      </v-flex>
+
       <v-flex xs12 mt-5 justify-center>
         <v-data-table :headers='headers' :items='addresses'>
           <template v-slot:items="props">
@@ -21,6 +29,9 @@
 
 <script>
 export default {
+  created(){
+    this.addresses=this.$store.state.addresses //連絡先のデータを取りに行く
+  },
   data () {
     return {
       headers: [
@@ -29,20 +40,7 @@ export default {
         { text: 'メールアドレス', value: 'email' },
         { text: '住所', value: 'address' }
       ],
-      addresses: [
-        {
-          name: '友人１',
-          tel: '090-0000-1111',
-          email: 'sample1@mail.com',
-          address: '東京都渋谷区'
-        },
-        {
-          name: '友人２',
-          tel: '090-2222-3333',
-          email: 'sample2@mail.com',
-          address: '東京都品川区'
-        }
-      ]
+      addresses: []
     }
   }
 }

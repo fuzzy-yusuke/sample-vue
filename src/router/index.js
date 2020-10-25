@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Addresses from '../views/Addresses.vue'
+import AddressForm from '../views/AddressForm.vue'
 
 Vue.use(VueRouter) //引数としてプラグインを渡して、機能を拡張出来る
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/addresses',
     name: 'addresses',
     component: Addresses
+  },
+  {
+    path: '/addresses/:address_id?/edit', //「:」を含ませることで、パスに含まれるID等の値をコンポーネントで受け取らせる。「?」はオプションとして扱われる
+    name: 'address_edit',
+    component: AddressForm
   },
   {
     path: '/about',
