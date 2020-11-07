@@ -41,11 +41,11 @@ export default {
       }
     })
   },
-  data: () => ({
-    return {
+  data (){
+    return{
       //
     }
-  }),
+  },
   methods: {
     ...mapActions(['toggleSideMenu']) //オブジェクト内に含まれるアクションをそれぞれのメソッド内に展開される
   }
