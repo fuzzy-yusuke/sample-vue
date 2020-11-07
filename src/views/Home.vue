@@ -6,7 +6,7 @@
                 <p>ご利用の方はGoogleアカウントでログインして下さい</p>
             </v-flex>
             <v-flex>
-                <v-btn color='info' @click="login">Googleアカウントでログイン</v-btn>
+                <v-btn color='info' @click="login">ログイン</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
