@@ -28,13 +28,23 @@
 <script>
 import SideNav from './components/SideNav' //SideNav.vueをインポートし、ローカル登録を行う
 import {mapActions}from 'vuex'             //コンポーネントのメソッドにstoreのactionメソッドを組み込む
+import firebase from 'firebase'
 export default {
   name: 'App',
   components: {
     SideNav
   },
+  created (){
+    firebase.auth().onAuthStateChanged(user => {  //呼び出されるコールバック関数はログインの時はユーザーのオブジェクト、ログアウトの時はnullをそれぞれ受け取る
+      if(user){                                   //
+        this.setLoginUser(user)
+      }
+    })
+  },
   data: () => ({
-    //
+    return {
+      //
+    }
   }),
   methods: {
     ...mapActions(['toggleSideMenu']) //オブジェクト内に含まれるアクションをそれぞれのメソッド内に展開される

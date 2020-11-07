@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions} from 'vuex' //ログインアクションの実行
 export default {
     methods:{
         ...mapActions(['login'])
