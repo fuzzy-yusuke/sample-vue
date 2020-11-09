@@ -14,6 +14,9 @@ export default new Vuex.Store({
     setLoginUser (state,user){
       state.login_user=user
     },
+    deleteLoginUser(state){ //ログアウト時にユーザー情報を削除
+      state.login_user=null
+    },
     toggleSideMenu(state){
       state.drawer=!state.drawer
     },
@@ -28,6 +31,12 @@ export default new Vuex.Store({
     login(){
       const google_auth_provider = new firebase.auth.GoogleAuthProvider() //firebaseのオブジェクトからGoogleのプロバイダーのインスタンスを生成し、変数に格納。
       firebase.auth().signInWithRedirect(google_auth_provider)            //signInWithRedirectのメソッドが呼ばれた時、Googleの認証画面にリダイレクトされる。
+    },
+    logout(){
+      firebase.auth().signOut()
+    },
+    deleteLoginUser({commit}){
+      commit('deleteLoginUser')
     },
     toggleSideMenu({commit}) { //引数としてcontextオブジェクトが自動的に渡される
       commit('toggleSideMenu')
