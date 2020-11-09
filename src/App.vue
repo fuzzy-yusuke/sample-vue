@@ -8,6 +8,9 @@
 
       <v-app-bar-nav-icon @click.stop="toggleSideMenu"></v-app-bar-nav-icon>
       <v-toolbar-title>マイアドレス帳</v-toolbar-title>
+      <v-toolbar-items>
+        <v-btn text @click="logout">ログアウト</v-btn>
+      </v-toolbar-items>
 
       <v-spacer></v-spacer>
 
@@ -36,8 +39,10 @@ export default {
   },
   created (){
     firebase.auth().onAuthStateChanged(user => {  //呼び出されるコールバック関数はログインの時はユーザーのオブジェクト、ログアウトの時はnullをそれぞれ受け取る
-      if(user){                                   //
+      if(user){                                   //非同期で実行される為、ログインとログアウトどちらの時もonAuthStateChangedを経由する
         this.setLoginUser(user)
+      }else{
+        this.deleteLoginUser()                   
       }
     })
   },
@@ -47,7 +52,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['toggleSideMenu']) //オブジェクト内に含まれるアクションをそれぞれのメソッド内に展開される
+    ...mapActions(['toggleSideMenu','setLoginUser','logout','deleteLoginUser']) //オブジェクト内に含まれるアクションをそれぞれのメソッド内に展開される
   }
 };
 </script>
