@@ -5,10 +5,10 @@
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <img src="https://avatars2.githubusercontent.com/u/1363954?s=460&v=4">
+            <img v-if="photoURL" :src="photoURL">
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Kazuya Kojima</v-list-item-title>
+            <v-list-item-title>{{userName}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -29,14 +29,17 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   data () {
     return {
       items: [
-        { title: 'ホーム', icon:'mdi-home',link:{ name: 'home'}},
         { title: '連絡先一覧', icon: 'mdi-menu',link:{name:'addresses'} } //メニュータイトルと中身をコントロール
       ]
     }
+  },
+  computed:{                                                            //ログインした時だけ名前と画像を表示させたりする為、computedで組む。
+    ...mapGetters(['userName','photoURL'])                              //これにより、コンポーネントの一つのプロパティとしてgetterの戻り値を参照できる
   }
 }
 </script>

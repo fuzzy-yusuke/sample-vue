@@ -45,6 +45,8 @@ export default new Vuex.Store({
       commit('addAddress',address)
     }
   },
-  modules: {
+  getters: {
+    userName: state => state.login_user ? state.login_user.displayName : '',  //ログインユーザーの名前とアイコンの画像を取得するオブジェクト
+    photoURL: state => state.login_user ? state.login_user.photoURL : ''      //stateからデータを取得し、加工されたデータを返す関数(login_userがnullの時は空文字で返す)
   }
 })
