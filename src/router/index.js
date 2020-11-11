@@ -10,7 +10,7 @@ Vue.use(VueRouter) //引数としてプラグインを渡して、機能を拡�
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {

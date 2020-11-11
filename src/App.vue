@@ -6,7 +6,8 @@
       dark
     >
 
-      <v-app-bar-nav-icon @click.stop="toggleSideMenu"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-show="$store.state.login_user" @click.stop="toggleSideMenu"></v-app-bar-nav-icon>
+      <!--ログイン中のみサイドメニューのアイコンが表示される-->
       <v-toolbar-title>マイアドレス帳</v-toolbar-title>
       <v-toolbar-items v-if="$store.state.login_user"><!--ログイン中のみログアウトボタンが表示される-->
         <v-btn text @click="logout">ログアウト</v-btn>
@@ -41,8 +42,12 @@ export default {
     firebase.auth().onAuthStateChanged(user => {  //呼び出されるコールバック関数はログインの時はユーザーのオブジェクト、ログアウトの時はnullをそれぞれ受け取る
       if(user){                                   //非同期で実行される為、ログインとログアウトどちらの時もonAuthStateChangedを経由する
         this.setLoginUser(user)
+        if(this.$router.currentRoute.name === 'home'){  //ログインし且つ、現在いる場所がホーム画面だった時、連絡先一覧が表示される。
+          this.$router.push({name: 'addresses'}, () => {}) 
+        }
       }else{
-        this.deleteLoginUser()                   
+        this.deleteLoginUser()
+        this.$router.push({name: 'home'}, () => {})      //pushメソッドでホーム画面に移動する             
       }
     })
   },
