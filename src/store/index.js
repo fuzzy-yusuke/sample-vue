@@ -29,9 +29,9 @@ export default new Vuex.Store({
     setLoginUser({commit},user){
       commit('setLoginUser',user)
     },
-    fetchAddresses({ getters,commit}){
-      firebase.firestore().collection(`users/${getters.uid}/addresses`).get().then(snapshot => {
-        snapshot.forEach(doc => commit('addAddress',{id:doc.id, address: doc.data() }))
+    fetchAddresses({ getters,commit }){ //Firestoreからデータを取得
+      firebase.firestore().collection(`users/${getters.uid}/addresses`).get().then(snapshot => { //collectionで取得対象のパスを指定し、thenメソッドに渡した関数の引数でgetの結果を受け取る
+        snapshot.forEach(doc => commit('addAddress',{id:doc.id, address: doc.data() }))           //snapshotで一つ一つの連絡先が格納(配列っぽいが、配列ではない。)
       })
     },
     login(){
