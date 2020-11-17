@@ -21,7 +21,7 @@ export default new Vuex.Store({
       state.drawer=!state.drawer
     },
     addAddress(state,{id,address}){
-      address.id=id
+      address.id=id //idで各連絡先を識別
       state.addresses.push(address)
     }
   },
@@ -51,7 +51,7 @@ export default new Vuex.Store({
       if (getters.uid){
         firebase.firestore().collection(`users/${getters.uid}/addresses`).add(address).then(doc => { 
           //gettersからIDを取得出来たら、FirestormのcollectionメソッドでDB上のパスを指定し、addメソッドで連絡先のオブジェクトを追加
-          commit('addAddress',{id:doc.id, address})
+          commit('addAddress',{id:doc.id, address}) 
         })
       }
     }
