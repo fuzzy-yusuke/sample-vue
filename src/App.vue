@@ -42,6 +42,7 @@ export default {
     firebase.auth().onAuthStateChanged(user => {  //呼び出されるコールバック関数はログインの時はユーザーのオブジェクト、ログアウトの時はnullをそれぞれ受け取る
       if(user){                                   //非同期で実行される為、ログインとログアウトどちらの時もonAuthStateChangedを経由する
         this.setLoginUser(user)
+        this.fetchAddresses()
         if(this.$router.currentRoute.name === 'home'){  //ログインし且つ、現在いる場所がホーム画面だった時、連絡先一覧が表示される。
           this.$router.push({name: 'addresses'}, () => {}) 
         }
@@ -57,7 +58,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['toggleSideMenu','setLoginUser','logout','deleteLoginUser']) //オブジェクト内に含まれるアクションをそれぞれのメソッド内に展開される
+    ...mapActions(['toggleSideMenu','setLoginUser','logout','deleteLoginUser','fetchAddresses']) //オブジェクト内に含まれるアクションをそれぞれのメソッド内に展開される
   }
 };
 </script>
