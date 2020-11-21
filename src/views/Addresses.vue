@@ -19,6 +19,7 @@
             <router-link :to="{name: 'address_edit',params: {address_id: item.id}}">
               <v-icon small class="mr-2">mdi-pencil</v-icon>
             </router-link>
+            <v-icon small class="mr-2" @click="deleteConfirm(item.id)">mdi-delete</v-icon>
           </template>
         </v-data-table>
       </v-flex>
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   created(){
     this.addresses=this.$store.state.addresses //連絡先のデータを取りに行く
@@ -42,6 +44,14 @@ export default {
       ],
       addresses: []
     }
+  },
+  methods: {
+    deleteConfirm(id){
+      if(confirm('この連絡先を削除しますか。')){ //確認用のメソッドを追加。「OK」が押下されると削除処理が実行
+        this.deleteAddress({id})
+      }
+    },
+    ...mapActions(['deleteAddress'])
   }
 }
 </script>

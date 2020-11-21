@@ -28,6 +28,15 @@
 <script>
 import {mapActions} from 'vuex'
 export default {
+  created(){
+    if(!this.$route.params.address_id) return //ルートのパラメータにIDが含まれているかチェック(無ければ新規作成へ)
+    const address=this.$store.getters.getAddressById(this.$route.params.address_id)
+    if(address){
+      this.address = address
+    }else{
+      this.$router.push({ name: 'addresses'}) //データを取得出来なかった場合は一覧ページへ戻る
+    }
+  },
   data () {
     return {
       address: {}
@@ -35,11 +44,15 @@ export default {
   },
   methods:{
       submit(){
+        if(this.$route.params.address_id){ //既存のIDの場合、更新処理に入る
+          this.updateAddress({id: this.$route.params.address_id, address:this.address})
+        }else{
           this.addAddress(this.address)
+        }
           this.$router.push({name:'addresses'}) //保存の完了後、連絡先一覧ページへ移動
           this.address={}                       //連絡先ページへ移動後、追加ページで入力されたデータをリセットする(配列の中を空にする感じ)
       },
-      ...mapActions(['addAddress'])
+      ...mapActions(['addAddress','updateAddress'])
   }
 }
 </script>
